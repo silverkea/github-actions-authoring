@@ -1,0 +1,32 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "get-employee-docker-action", "get-employee-docker-action", "{8417550E-E59F-E483-E792-F56FAB2ADC96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A8528C18-F105-73E2-6B4A-646D5F588E47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetDockerAction", "get-employee-docker-action\src\DotNetDockerAction.csproj", "{EF4FE7A7-7437-2CED-93DC-2D34ED2EEE0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF4FE7A7-7437-2CED-93DC-2D34ED2EEE0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF4FE7A7-7437-2CED-93DC-2D34ED2EEE0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF4FE7A7-7437-2CED-93DC-2D34ED2EEE0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF4FE7A7-7437-2CED-93DC-2D34ED2EEE0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A8528C18-F105-73E2-6B4A-646D5F588E47} = {8417550E-E59F-E483-E792-F56FAB2ADC96}
+		{EF4FE7A7-7437-2CED-93DC-2D34ED2EEE0B} = {A8528C18-F105-73E2-6B4A-646D5F588E47}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6AA749CE-1BF8-430E-B274-1F57FABEA299}
+	EndGlobalSection
+EndGlobal

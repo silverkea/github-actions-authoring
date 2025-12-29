@@ -1,0 +1,47 @@
+name: 'Send Status Notification to Slack (Composite)'
+description: 'Sends the status of the GitHub Action to the user via Slack'
+
+inputs:
+  github-token:
+    description: 'The GitHub token to authenticate with GitHub API'
+    required: true
+  github-username:
+    description: 'The GitHub username of the employee to look up'
+    required: true
+  slack-token:
+    description: 'The organizational Slack access token to look up users'
+    required: true
+  slack-bot-token:
+    description: 'The organizational Slack access token to post messages (requires chat:write permissions)'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - uses: './get-employee-js-action'
+      id: get-employee-js
+      with:
+        github-username: ${{ inputs.github-username }}
+        github-token: ${{ inputs.github-token }}
+        slack-token: ${{ inputs.slack-token }}
+    
+    - uses: './get-employee-docker-action'
+      id: get-employee-docker
+      with:
+        github-username: ${{ inputs.github-username }}
+        github-token: ${{ inputs.github-token }}
+        slack-token: ${{ inputs.slack-token }}
+    
+    - run: |
+        echo "::error::Slack user IDs do not match from JS and Docker"
+        exit 1
+      if: steps.get-employee-js.outputs.slack-user-id != steps.get-employee-docker.outputs.slack-user-id
+      shell: sh
+    
+    - uses: slackapi/slack-github-action@v1.26.0
+      if: steps.get-employee-js.outputs.slack-user-id == steps.get-employee-docker.outputs.slack-user-id
+      with:
+        channel-id: '${{ steps.get-employee-js.outputs.slack-user-id }}'
+        slack-message: "GitHub build result: ${{ job.status }}\n${{ github.event.pull_request.html_url || github.event.head_commit.url }}"
+      env:
+        SLACK_BOT_TOKEN: ${{ inputs.slack-bot-token }}
