@@ -18,6 +18,6 @@ outputs:
 
 runs:
   using: node24
-  main: main.js
+  main: dist/index.js
 
 

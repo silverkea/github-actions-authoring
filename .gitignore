@@ -60,7 +60,7 @@ lerna-debug.log*
 .parcel-cache
 .next
 .nuxt
-dist
+#dist
 .cache/
 .vuepress/dist
 .serverless/
